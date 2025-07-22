@@ -1,7 +1,10 @@
 
 
+
 "use client";
 import { useState } from "react";
+import { db } from "../firebase";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
 export default function LoginPage() {
   const [mode, setMode] = useState<'signup' | 'login'>('signup');
@@ -15,18 +18,40 @@ export default function LoginPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (mode === "signup") {
       if (!form.username || !form.gender) {
         setMessage("Please enter a username and select gender.");
         return;
       }
+      // Check if username already exists
+      const usersRef = collection(db, "users");
+      const q = query(usersRef, where("username", "==", form.username));
+      const querySnapshot = await getDocs(q);
+      if (!querySnapshot.empty) {
+        setMessage("Username already taken. Please choose another.");
+        return;
+      }
+      // Add new user to Firestore
+      await addDoc(usersRef, {
+        username: form.username,
+        gender: form.gender,
+      });
       setMessage("Signup successful! You can now login.");
       setMode("login");
     } else {
       if (!form.username) {
         setMessage("Please enter your username.");
+        return;
+      }
+      // Check if username exists
+      const usersRef = collection(db, "users");
+      const q = query(usersRef, where("username", "==", form.username));
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        setMessage("Username not found. Please sign up first.");
         return;
       }
       setMessage(`Welcome, ${form.username}!`);
