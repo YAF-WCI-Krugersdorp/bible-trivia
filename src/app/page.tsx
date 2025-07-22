@@ -56,9 +56,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 relative">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6 text-center">Bible Trivia Login</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center relative" style={{ background: "var(--background)" }}>      
+    <div className="rounded-lg shadow-lg p-8 w-full max-w-md"style={{ background: "var(--background)" }}>
+        <h1 className="text-2xl font-bold mb-6 text-center">Bible Trivia</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="text"
@@ -91,7 +91,18 @@ export default function LoginPage() {
         </form>
         <div className="mt-4 text-center">
           <button
-            className="text-blue-600 hover:underline"
+            style={{
+              color: "var(--foreground)",
+              textDecoration: "none",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              fontWeight: 500,
+              fontSize: "1rem",
+              transition: "color 0.2s, text-decoration 0.2s",
+            }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = "none")}
             onClick={() => {
               setMode(mode === "signup" ? "login" : "signup");
               setMessage("");
@@ -102,11 +113,18 @@ export default function LoginPage() {
         </div>
         {message && <div className="mt-4 text-center text-red-500">{message}</div>}
       </div>
+     
       {/* Storyset SVG illustration in bottom right corner */}
       <img
         src="/storyset.svg"
         alt="Bible study illustration"
         style={{ position: "fixed", right: 20, bottom: 20, width: "500px", zIndex: 50 }}
+      />
+      {/* Storyset SVG illustration in bottom left corner */}
+      <img
+        src="/bible_teaching.svg"
+        alt="Bible study illustration with teacher"
+        style={{ position: "fixed", left: 20, bottom: 20, width: "500px", zIndex: 50 }}
       />
     </div>
   );
