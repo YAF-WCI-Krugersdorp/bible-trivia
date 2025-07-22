@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+# Bible Trivia App
+
+This is a Bible Trivia web application built with [Next.js](https://nextjs.org). The current version provides a login and signup page where users can:
+
+- Create an account by choosing a unique username/nickname and selecting their gender.
+- Login using their username.
+- User data is securely stored in Firebase Firestore.
 
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
 # or
-yarn dev
+
 # or
 pnpm dev
 # or
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Features
+- Login and signup form (see `src/app/page.tsx`)
+- Firebase Firestore integration for user data
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Next Steps
+- Add trivia questions and gameplay
+- Add authentication and user sessions
 
-## Learn More
+## Housekeeping
 
-To learn more about Next.js, take a look at the following resources:
+- The following sections from the default README are not currently relevant and can be deleted:
+  - `next/font` usage (not used in this project)
+  - Links to Next.js tutorials and deployment documentation (keep only if you want general Next.js info)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
+- Main page: `src/app/page.tsx`
+- Firebase config: `src/firebase.js`
+- Environment variables: `.env.local` (not committed to git)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Security
+- Firebase credentials are stored in `.env.local` and are not tracked by git (see `.gitignore`).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Feel free to update this README as new features are added!
