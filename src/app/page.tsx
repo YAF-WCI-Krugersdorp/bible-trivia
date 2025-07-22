@@ -56,7 +56,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 relative">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-center">Bible Trivia Login</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -102,6 +102,12 @@ export default function LoginPage() {
         </div>
         {message && <div className="mt-4 text-center text-red-500">{message}</div>}
       </div>
+      {/* Storyset SVG illustration in bottom right corner */}
+      <img
+        src="/storyset.svg"
+        alt="Bible study illustration"
+        style={{ position: "fixed", right: 20, bottom: 20, width: "500px", zIndex: 50 }}
+      />
     </div>
   );
 }
